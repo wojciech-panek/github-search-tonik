@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Container } from './home.styles';
 import messages from './home.messages';
 import { RepositoriesList } from './repositoriesList';
+import { SearchField } from './searchField';
 import { RepositoriesActions, selectRepositoriesData } from '../../modules/repositories';
 
 export const Home = () => {
@@ -21,6 +22,8 @@ export const Home = () => {
   return (
     <Container>
       <Helmet title={formatMessage(messages.pageTitle)} />
+
+      <SearchField />
 
       <RepositoriesList repositories={repositories} />
     </Container>
