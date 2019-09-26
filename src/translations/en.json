@@ -4,6 +4,7 @@
   "home.repositoriesList.createdAtColumn": "Created at",
   "home.repositoriesList.nameColumn": "Name",
   "home.repositoriesList.ownerColumn": "Owner",
+  "home.repositoriesList.pageSize": "Page size",
   "home.repositoriesList.starsColumn": "Stars",
   "home.searchField.placeholder": "Input repository name",
   "home.searchField.search": "Search",
