@@ -30,7 +30,8 @@
     "reduxsauce": "^1.1.0",
     "reselect": "^4.0.0",
     "seamless-immutable": "^7.1.4",
-    "styled-components": "^4.4.0"
+    "styled-components": "^4.4.0",
+    "use-debounce": "^3.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
