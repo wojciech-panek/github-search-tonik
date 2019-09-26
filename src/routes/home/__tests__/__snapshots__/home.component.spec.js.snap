@@ -7,9 +7,7 @@ exports[`Home: Component should render correctly 1`] = `
     encodeSpecialCharacters={true}
     title="home.pageTitle / Home / {}"
   />
-  <FormattedMessage
-    defaultMessage="Home"
-    id="home.welcome"
-  />
+  <SearchField />
+  <RepositoriesList />
 </styled.div>
 `;
