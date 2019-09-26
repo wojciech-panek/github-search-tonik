@@ -1,13 +1,16 @@
-### Assumptions
+## Assumptions
 * all commits are pushed directly to `master` branch to save time on feature/releases
 
-### Notes
+## Notes
 
-## boilerplate
+### boilerplate
 
 project is generated using `create-react-app` to save time of configuration
 
-## codestyle & linting
+### codestyle & linting
 
 project uses `prettier` with default `eslint` config from `create-react-app` to ensure consistent codestyle in the codebase
   
+## additional tools
+* react-intl
+* react helmet
