@@ -13,3 +13,8 @@ export const selectRepositoriesCacheItem = key =>
     selectRepositoriesDomain,
     pathOr(null, ['cache', key])
   );
+
+export const selectRepositoriesIsLoading = createSelector(
+  selectRepositoriesDomain,
+  prop('isLoading')
+);

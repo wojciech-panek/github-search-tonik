@@ -5,11 +5,12 @@ import { Table } from 'antd';
 import { format } from 'date-fns';
 
 import { Container } from './repositoriesList.styles';
-import { selectRepositoriesData } from '../../../modules/repositories';
+import { selectRepositoriesData, selectRepositoriesIsLoading } from '../../../modules/repositories';
 import messages from './repositoriesList.messages';
 
 export const RepositoriesList = () => {
   const repositories = useSelector(selectRepositoriesData);
+  const isLoadingRepositories = useSelector(selectRepositoriesIsLoading);
   const { formatMessage } = useIntl();
 
   const columns = [
@@ -43,7 +44,13 @@ export const RepositoriesList = () => {
 
   return (
     <Container>
-      <Table columns={columns} dataSource={repositories} pagination={false} rowKey="id" />
+      <Table
+        columns={columns}
+        dataSource={repositories}
+        pagination={false}
+        rowKey="id"
+        loading={isLoadingRepositories}
+      />
     </Container>
   );
 };
