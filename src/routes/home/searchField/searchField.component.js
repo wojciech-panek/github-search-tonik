@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useIntl } from 'react-intl';
-import { Input } from 'antd';
+import { Input, Icon } from 'antd';
 import { stringify, parse } from 'query-string';
 import { useDebouncedCallback } from 'use-debounce';
 
@@ -33,7 +33,13 @@ export const SearchField = () => {
 
   return (
     <Container>
-      <Input placeholder={formatMessage(messages.placeholder)} size="large" value={value} onChange={handleChange} />
+      <Input
+        placeholder={formatMessage(messages.placeholder)}
+        size="large"
+        value={value}
+        onChange={handleChange}
+        suffix={<Icon type="search" />}
+      />
     </Container>
   );
 };

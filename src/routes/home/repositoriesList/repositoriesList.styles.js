@@ -13,5 +13,5 @@ export const SelectLabel = styled.label`
 
 export const Select = styled(AntDesignSelect)`
   width: 100px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 `;
