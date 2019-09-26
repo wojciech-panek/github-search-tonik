@@ -4,10 +4,13 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { Table } from 'antd';
 import { format, compareAsc } from 'date-fns';
 import { path } from 'ramda';
+import { parse, stringify } from 'query-string';
 
 import { Container, Select, SelectContainer, SelectLabel } from './repositoriesList.styles';
 import { selectRepositoriesData, selectRepositoriesIsLoading } from '../../../modules/repositories';
 import messages from './repositoriesList.messages';
+import history from '../../../services/history';
+import { ROUTES } from '../../app.constants';
 
 const getStringComparator = pathValue => (a, b) => {
   const valueA = path(pathValue, a).toLowerCase();
@@ -26,12 +29,26 @@ export const RepositoriesList = () => {
   const isLoadingRepositories = useSelector(selectRepositoriesIsLoading);
   const { formatMessage } = useIntl();
 
-  const [sort, setSort] = useState({});
-  const [pageSize, setPageSize] = useState(10);
+  const { order, field, columnKey, pageSize, current } = parse(history.location.search);
 
-  const handleTableChange = useCallback((pagination, filters, sorter) => setSort(sorter), []);
+  const [sort, setSort] = useState({ order, field, columnKey });
+  const [selectedPageSize, setPageSize] = useState(pageSize ? parseInt(pageSize, 10) : 10);
+  const [selectedCurrent, setCurrent] = useState(current ? parseInt(current, 10) : 1);
 
-  const handlePageSizeChange = useCallback(value => setPageSize(value), []);
+  const handleTableChange = useCallback((pagination, filters, sorter) => {
+    const currentParams = parse(history.location.search);
+    const { current } = pagination;
+    const { order, field, columnKey } = sorter;
+    history.push(`${ROUTES.home}?${stringify({ ...currentParams, current, order, field, columnKey })}`);
+    setSort(sorter);
+    setCurrent(current);
+  }, []);
+
+  const handlePageSizeChange = useCallback(value => {
+    const currentParams = parse(history.location.search);
+    history.push(`${ROUTES.home}?${stringify({ ...currentParams, pageSize: value })}`);
+    setPageSize(value);
+  }, []);
 
   const columns = [
     {
@@ -91,7 +108,8 @@ export const RepositoriesList = () => {
         loading={isLoadingRepositories}
         onChange={handleTableChange}
         pagination={{
-          pageSize: pageSize,
+          pageSize: selectedPageSize,
+          current: selectedCurrent,
         }}
       />
     </Container>

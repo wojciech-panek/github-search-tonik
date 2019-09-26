@@ -1,13 +1,22 @@
-import { put, select, all, takeLatest } from 'redux-saga/effects';
-import { stringify as stringifyQuery } from 'query-string';
+import { put, select, all, takeLatest, fork } from 'redux-saga/effects';
+import { parse, stringify } from 'query-string';
 
 import api from '../../services/api';
 import { RepositoriesTypes, RepositoriesActions } from './repositories.redux';
 import { selectRepositoriesCacheItem } from './repositories.selectors';
+import history from '../../services/history';
+
+export function* watchQueryInSearch() {
+  const search = parse(history.location.search);
+
+  if (search.query) {
+    yield put(RepositoriesActions.search(search.query));
+  }
+}
 
 export function* search({ query }) {
   try {
-    const queryString = stringifyQuery({
+    const queryString = stringify({
       q: query,
       sort: 'stars',
       order: 'desc',
@@ -29,5 +38,5 @@ export function* search({ query }) {
 }
 
 export function* watchRepositories() {
-  yield all([takeLatest(RepositoriesTypes.SEARCH, search)]);
+  yield all([fork(watchQueryInSearch), takeLatest(RepositoriesTypes.SEARCH, search)]);
 }
