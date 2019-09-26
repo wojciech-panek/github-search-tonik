@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home: Component should render correctly 1`] = `
+<styled.div>
+  <HelmetWrapper
+    defer={true}
+    encodeSpecialCharacters={true}
+    title="home.pageTitle / Home / {}"
+  />
+  <FormattedMessage
+    defaultMessage="Home"
+    id="home.welcome"
+  />
+</styled.div>
+`;
