@@ -1,6 +1,12 @@
 {
   "app.pageTitle": "GitHub Search",
   "home.pageTitle": "Home",
+  "home.repositoriesList.createdAtColumn": "Created at",
+  "home.repositoriesList.nameColumn": "Name",
+  "home.repositoriesList.ownerColumn": "Owner",
+  "home.repositoriesList.starsColumn": "Stars",
+  "home.searchField.placeholder": "Input repository name",
+  "home.searchField.search": "Search",
   "home.welcome": "Home",
   "notFound.pageTitle": "Not found",
   "notFound.title": "Error: 404"

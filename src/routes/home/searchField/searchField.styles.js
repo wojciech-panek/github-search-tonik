@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-export const Form = styled.form``;
-
-export const Input = styled.input``;
-
-export const Button = styled.button``;
+export const Container = styled.div`
+  width: 400px;
+  margin-bottom: 40px;
+`;
