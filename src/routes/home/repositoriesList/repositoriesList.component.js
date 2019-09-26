@@ -18,7 +18,7 @@ export const RepositoriesList = () => {
       dataIndex: 'name',
       key: 'name',
       render: (text, row) => (
-        <a href={row.html_url} target="_blank" rel="noopener noreferrer">
+        <a href={row.htmlUrl} target="_blank" rel="noopener noreferrer">
           {text}
         </a>
       ),
@@ -30,12 +30,12 @@ export const RepositoriesList = () => {
     },
     {
       title: formatMessage(messages.starsColumn),
-      dataIndex: 'stargazers_count',
+      dataIndex: 'stargazersCount',
       key: 'stars',
     },
     {
       title: formatMessage(messages.createdAtColumn),
-      dataIndex: 'created_at',
+      dataIndex: 'createdAt',
       key: 'createdAt',
       render: text => format(new Date(text), 'yyyy-MM-dd'),
     },
