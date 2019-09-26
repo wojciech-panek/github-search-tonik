@@ -9,7 +9,19 @@ const sagaMiddleware = createSagaMiddleware();
 export default function configureStore(initialState = {}) {
   const middlewares = [sagaMiddleware];
 
-  const store = createStore(createReducer(), Immutable(initialState), compose(applyMiddleware(...middlewares)));
+  const enhancers = [];
+  if (window.__REDUX_DEVTOOLS_EXTENSION__) {
+    enhancers.push(window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+  }
+
+  const store = createStore(
+    createReducer(),
+    Immutable(initialState),
+    compose(
+      applyMiddleware(...middlewares),
+      ...enhancers
+    )
+  );
 
   sagaMiddleware.run(rootSaga);
 

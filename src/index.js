@@ -4,7 +4,7 @@ import { Router } from 'react-router';
 import { Provider } from 'react-redux';
 
 import App from './routes';
-import browserHistory from './shared/services/history';
+import browserHistory from './services/history';
 import configureStore from './modules/store';
 
 const initialState = {};
