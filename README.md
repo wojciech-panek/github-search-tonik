@@ -14,3 +14,10 @@ project uses `prettier` with default `eslint` config from `create-react-app` to 
 ## additional tools
 * react-intl
 * react helmet
+
+## left TODO
+* add missing tests
+* configure and add `storybooks`
+* configure and add `plop`
+* create `Theme` and keep colors/typography there
+
