@@ -1,11 +1,11 @@
 import React, { useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { Table } from 'antd';
 import { format, compareAsc } from 'date-fns';
 import { path } from 'ramda';
 
-import { Container } from './repositoriesList.styles';
+import { Container, Select, SelectContainer, SelectLabel } from './repositoriesList.styles';
 import { selectRepositoriesData, selectRepositoriesIsLoading } from '../../../modules/repositories';
 import messages from './repositoriesList.messages';
 
@@ -27,8 +27,11 @@ export const RepositoriesList = () => {
   const { formatMessage } = useIntl();
 
   const [sort, setSort] = useState({});
+  const [pageSize, setPageSize] = useState(10);
 
   const handleTableChange = useCallback((pagination, filters, sorter) => setSort(sorter), []);
+
+  const handlePageSizeChange = useCallback(value => setPageSize(value), []);
 
   const columns = [
     {
@@ -69,12 +72,27 @@ export const RepositoriesList = () => {
 
   return (
     <Container>
+      <SelectContainer>
+        <SelectLabel>
+          <FormattedMessage {...messages.pageSize} />:
+        </SelectLabel>
+        <Select value={pageSize} onChange={handlePageSizeChange}>
+          <Select.Option value={5}>5</Select.Option>
+          <Select.Option value={10}>10</Select.Option>
+          <Select.Option value={15}>15</Select.Option>
+          <Select.Option value={20}>20</Select.Option>
+        </Select>
+      </SelectContainer>
+
       <Table
         columns={columns}
         dataSource={repositories.asMutable()}
         rowKey="id"
         loading={isLoadingRepositories}
         onChange={handleTableChange}
+        pagination={{
+          pageSize: pageSize,
+        }}
       />
     </Container>
   );

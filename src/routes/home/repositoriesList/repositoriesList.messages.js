@@ -2,6 +2,10 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
+  pageSize: {
+    id: 'home.repositoriesList.pageSize',
+    defaultMessage: 'Page size',
+  },
   nameColumn: {
     id: 'home.repositoriesList.nameColumn',
     defaultMessage: 'Name',
